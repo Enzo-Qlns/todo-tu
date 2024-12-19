@@ -25,6 +25,7 @@ Assurez-vous d'avoir [Node.js](https://nodejs.org/) installé sur votre machine.
 ## Scripts
 
 - `dev` : Démarre le serveur de développement.
+
   ```sh
   pnpm start
   ```
