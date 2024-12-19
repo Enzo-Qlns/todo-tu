@@ -6,6 +6,9 @@ import noteService from "./api/noteService"
 function App() {
   const [notes, setNotes] = useState<Note[]>([])
 
+  /**
+   * Get all notes from the server
+   */
   const getNotes = async () => {
     try {
       const res = await noteService.getNotes()
@@ -15,6 +18,10 @@ function App() {
     }
   }
 
+  /**
+   * Add a new note to the server
+   * @param note AddNote
+   */
   const handleAdd = async (note: AddNote) => {
     try {
       const res = await noteService.addNotes(note)
@@ -24,6 +31,10 @@ function App() {
     }
   }
 
+  /**
+   * Update the checked status of a note
+   * @param note Note
+   */
   const handleCheck = async (note: Note) => {
     try {
       const res = await noteService.updateNotes(note.id, { checked: !note.checked });
@@ -33,6 +44,10 @@ function App() {
     }
   }
 
+  /**
+   * Remove a note from the server
+   * @param id number
+   */
   const handleRemove = async (id: number) => {
     try {
       await noteService.deleteNotes(id)

@@ -51,6 +51,10 @@ const Form = ({ onAddNewNote }: { onAddNewNote: (note: Note) => void }) => {
   const [text, setText] = useState("");
   const [unit, setUnit] = useState<"mins" | "hrs">("mins");
 
+  /**
+   * Handle the form submission
+   * @returns void
+   */
   const handleSubmit = () => {
     if (!text.length) {
       return;
