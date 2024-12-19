@@ -1,25 +1,33 @@
-
 ## Installation
 
 Assurez-vous d'avoir [Node.js](https://nodejs.org/) installé sur votre machine. Ensuite, suivez ces étapes :
 
 1. Clonez le dépôt :
-    ```sh
-    git clone https://github.com/Enzo-Qlns/todo-tu.git
-    cd api
-    ```
+
+   ```sh
+   git clone https://github.com/Enzo-Qlns/todo-tu.git
+   cd api
+   ```
 
 2. Installez les dépendances :
-    ```sh
-    pnpm install
-    ```
+
+   ```sh
+   pnpm install
+   ```
+
+3. Créez un fichier `db.json` à la racine du projet et ajoutez-y cette structure de base. Exemple :
+   ```json
+   {
+     "notes": []
+   }
+   ```
 
 ## Scripts
 
 - `dev` : Démarre le serveur de développement.
-    ```sh
-    pnpm start
-    ```
+  ```sh
+  pnpm start
+  ```
 
 ## Structure des dossiers
 
