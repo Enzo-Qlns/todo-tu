@@ -1,0 +1,61 @@
+import { useEffect, useState } from "react"
+import VanishList from "./components/ui/vanish-list"
+import { AddNote, Note } from "./types/note-type"
+import noteService from "./api/noteService"
+
+function App() {
+  const [notes, setNotes] = useState<Note[]>([])
+
+  const getNotes = async () => {
+    try {
+      const res = await noteService.getNotes()
+      setNotes(res.data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const handleAdd = async (note: AddNote) => {
+    try {
+      const res = await noteService.addNotes(note)
+      setNotes([...notes, res.data])
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const handleCheck = async (note: Note) => {
+    try {
+      const res = await noteService.updateNotes(note.id, { checked: !note.checked });
+      setNotes(notes.map((n: Note) => (n.id === note.id ? res.data : n)));
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const handleRemove = async (id: number) => {
+    try {
+      await noteService.deleteNotes(id)
+      setNotes(notes.filter((n: Note) => n.id !== id))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  useEffect(() => {
+    getNotes()
+  }, [])
+
+  return (
+    <>
+      <VanishList
+        notes={notes}
+        onAddNewNote={handleAdd}
+        onCheckNote={handleCheck}
+        onRemoveNote={handleRemove}
+      />
+    </>
+  )
+}
+
+export default App
