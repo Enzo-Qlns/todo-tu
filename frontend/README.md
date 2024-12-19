@@ -31,7 +31,7 @@ Assurez-vous d'avoir [Node.js](https://nodejs.org/) installé sur votre machine.
     pnpm lint
     ```
 
-- `test` : Éxecute les tests unitaires
+- `test` : Exécute les tests unitaires
     ```sh
     pnpm test
     ```
