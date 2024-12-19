@@ -1,9 +1,10 @@
+import React from "react"
 import { useEffect, useState } from "react"
 import VanishList from "./components/ui/vanish-list"
 import { AddNote, Note } from "./types/note-type"
-import noteService from "./api/noteService"
+import noteService from "./api/note-service"
 
-function App() {
+function App(): React.ReactNode {
   const [notes, setNotes] = useState<Note[]>([])
 
   /**
@@ -63,6 +64,7 @@ function App() {
 
   return (
     <>
+      <span>Vanish List</span>
       <VanishList
         notes={notes}
         onAddNewNote={handleAdd}
@@ -73,4 +75,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
