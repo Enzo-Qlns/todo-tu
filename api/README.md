@@ -12,7 +12,7 @@ Assurez-vous d'avoir [Node.js](https://nodejs.org/) installé sur votre machine.
 2. Installez les dépendances :
 
    ```sh
-   pnpm install
+   pnpm i -g json-server@0.17.4
    ```
 
 3. Créez un fichier `db.json` à la racine du projet et ajoutez-y cette structure de base. Exemple :
