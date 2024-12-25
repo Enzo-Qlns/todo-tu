@@ -63,15 +63,12 @@ function App(): React.ReactNode {
   }, [])
 
   return (
-    <>
-      <span>Vanish List</span>
-      <VanishList
-        notes={notes}
-        onAddNewNote={handleAdd}
-        onCheckNote={handleCheck}
-        onRemoveNote={handleRemove}
-      />
-    </>
+    <VanishList
+      notes={notes}
+      onAddNewNote={handleAdd}
+      onCheckNote={handleCheck}
+      onRemoveNote={handleRemove}
+    />
   )
 }
 

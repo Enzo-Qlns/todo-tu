@@ -1,3 +1,4 @@
+import React from "react";
 import { AnimatePresence, useAnimate, usePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FiClock, FiPlus, FiTrash2 } from "react-icons/fi";
@@ -60,6 +61,16 @@ const Form = ({ onAddNewNote }: { onAddNewNote: (note: Note) => void }) => {
       return;
     }
 
+    // check if value not exceed 256
+    if (text.length > 256) {
+      return;
+    }
+
+    // check if time is not less than 1
+    if (time < 1) {
+      return;
+    }
+
     onAddNewNote({
       id: Math.random(),
       text,
@@ -90,8 +101,10 @@ const Form = ({ onAddNewNote }: { onAddNewNote: (note: Note) => void }) => {
             <textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
+              title="add-textarea"
               placeholder="What do you need to do?"
               className="h-24 w-full resize-none rounded bg-zinc-900 p-3 text-sm text-zinc-50 placeholder-zinc-500 caret-zinc-50 focus:outline-0"
+              maxLength={250}
               required
             />
             <div className="flex items-center justify-between">
@@ -99,12 +112,15 @@ const Form = ({ onAddNewNote }: { onAddNewNote: (note: Note) => void }) => {
                 <input
                   type="number"
                   className="w-24 rounded bg-zinc-700 px-1.5 py-1 text-sm text-zinc-50 focus:outline-0"
+                  title="time-input"
                   value={time}
                   onChange={(e) => setTime(parseInt(e.target.value))}
+                  min={1}
                   required
                 />
                 <button
                   type="button"
+                  title="mins-button"
                   onClick={() => setUnit("mins")}
                   className={`rounded px-1.5 py-1 text-xs ${unit === "mins" ? "bg-white text-zinc-950" : "bg-zinc-300/20 text-zinc-300 transition-colors hover:bg-zinc-600 hover:text-zinc-200"}`}
                 >
@@ -112,6 +128,7 @@ const Form = ({ onAddNewNote }: { onAddNewNote: (note: Note) => void }) => {
                 </button>
                 <button
                   type="button"
+                  title="hrs-button"
                   onClick={() => setUnit("hrs")}
                   className={`rounded px-1.5 py-1 text-xs ${unit === "hrs" ? "bg-white text-zinc-950" : "bg-zinc-300/20 text-zinc-300 transition-colors hover:bg-zinc-600 hover:text-zinc-200"}`}
                 >
@@ -120,6 +137,7 @@ const Form = ({ onAddNewNote }: { onAddNewNote: (note: Note) => void }) => {
               </div>
               <button
                 type="submit"
+                title="submit-button"
                 className="rounded bg-indigo-600 px-1.5 py-1 text-xs text-indigo-50 transition-colors hover:bg-indigo-500"
               >
                 Submit
@@ -131,6 +149,7 @@ const Form = ({ onAddNewNote }: { onAddNewNote: (note: Note) => void }) => {
       <button
         onClick={() => setVisible((pv) => !pv)}
         className="grid w-full place-content-center rounded-full border border-zinc-700 bg-zinc-900 py-3 text-lg text-white transition-colors hover:bg-zinc-800 active:bg-zinc-900"
+        title="add-button"
       >
         <FiPlus
           className={`transition-transform ${visible ? "rotate-45" : "rotate-0"}`}
@@ -255,6 +274,7 @@ const Todo = ({
         </div>
         <button
           onClick={() => removeElement(id)}
+          title="trash"
           className="rounded bg-red-300/20 px-1.5 py-1 text-xs text-red-300 transition-colors hover:bg-red-600 hover:text-red-200"
         >
           <FiTrash2 />
